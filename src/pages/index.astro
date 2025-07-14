@@ -47,86 +47,90 @@ const faqs = [
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&display=swap" rel="stylesheet">
   </head>
   <body class="bg-black text-white font-sans">
-    <!-- Header con logo y texto -->
-    <header class="w-full flex flex-col items-center justify-center gap-3 px-4 sm:px-8 py-6 max-w-6xl mx-auto">
-      <div class="flex items-center gap-4">
-        <img src="/logo.png" alt="Logo Looped" class="w-14 h-14" />
-        <span class="text-4xl font-normal font-['Inter',sans-serif] lowercase">looped</span>
-      </div>
-    </header>
-    <!-- Hero Section -->
-    <section id="hero" class="w-full min-h-[90vh] flex flex-col md:flex-row items-center justify-between px-4 sm:px-8 py-12 md:py-20 gap-8 md:gap-12 max-w-6xl mx-auto opacity-0 translate-y-8 transition-all duration-1000 ease-out will-change-transform">
-      <div class="flex-1 flex flex-col justify-center items-start gap-6">
-        <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight font-['Inter',sans-serif] bg-gradient-to-br from-white to-[#00B290] bg-clip-text text-transparent">
-          Tu resumen musical<br/>cada semana
-        </h1>
-        <p class="text-base sm:text-lg md:text-2xl text-neutral-300 max-w-xl">Looped es la red social donde cada domingo a las 21:00 compartes tus tres canciones más escuchadas de la semana. Descubre lo que escuchan tus amigos y revive tus mejores momentos musicales.</p>
-        <div class="flex flex-wrap gap-4 mt-6">
-          <a href="https://apps.apple.com/" target="_blank" rel="noopener" class="transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl rounded-lg">
-            <img src="/Download_on_the_App_Store_Badge_ES_RGB_blk_100217.svg" alt="Descargar en App Store" class="h-14 w-auto max-w-[220px] min-w-[160px]" />
-          </a>
-          <a href="https://play.google.com/store" target="_blank" rel="noopener" class="transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl rounded-lg flex items-center border border-[1px] border-neutral-400">
-            <img src="/Spanish.svg" alt="Disponible en Google Play" class="h-14 w-auto max-w-[220px] min-w-[160px]" />
-          </a>
+    <div class="flex flex-col items-center w-full max-w-6xl mx-auto gap-8 sm:gap-12 px-4 sm:px-8">
+      <!-- Header con logo y texto -->
+      <header class="w-full flex flex-col items-center justify-center gap-3 pt-6">
+        <div class="flex items-center gap-4">
+          <img src="/logo.png" alt="Logo Looped" class="w-14 h-14" />
+          <span class="text-4xl font-normal font-['Inter',sans-serif] lowercase">looped</span>
         </div>
-      </div>
-      <div class="flex-1 flex justify-center items-center">
-        <img src="/mockup1.png" alt="App Looped" class="w-full max-w-[320px] md:max-w-[380px] rounded-[2.5rem] object-contain" />
-      </div>
-    </section>
-    <div class="w-full flex flex-col items-center justify-center my-12 gap-4">
-      <span class="italic text-xl sm:text-2xl md:text-3xl font-semibold text-center max-w-2xl">
-        Cambia tu manera de relacionarte con la <span class="text-[#00B290]">música</span>
-      </span>
-      <div class="h-0.5 w-64 rounded-full bg-gradient-to-r from-[#00B290] via-white to-[#00B290] opacity-80"></div>
-    </div>
-    <!-- Features Section -->
-    <section id="features" class="flex flex-col gap-16 md:gap-40 py-16 md:py-32 px-4 sm:px-8 max-w-6xl mx-auto">
-      {features.map((feature, idx) => (
-        <div class={`flex flex-col md:flex-row ${feature.reverse ? 'md:flex-row-reverse' : ''} items-center gap-8 md:gap-16 max-w-6xl mx-auto w-full`}> 
-          <div class="flex-1 flex justify-center">
-            <img src={feature.image} alt={feature.title} class="w-full max-w-[300px] md:max-w-[340px] rounded-[2.5rem] object-contain transition-transform duration-500 ease-in-out hover:scale-105" />
-          </div>
-          <div class="flex-1 flex flex-col gap-4">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold font-['Inter',sans-serif]">{feature.title}</h2>
-            <p class="text-base sm:text-lg md:text-xl text-neutral-300">{feature.description}</p>
+      </header>
+      <!-- Hero Section -->
+      <section id="hero" class="w-full flex flex-col md:flex-row items-center justify-between py-8 md:py-14 gap-8 md:gap-12 bg-black rounded-3xl shadow-lg opacity-0 translate-y-8 transition-all duration-1000 ease-out will-change-transform">
+        <div class="flex-1 flex flex-col justify-center items-start gap-6 px-2 sm:px-6">
+          <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight font-['Inter',sans-serif] bg-gradient-to-br from-white to-[#00B290] bg-clip-text text-transparent">
+            Tu resumen musical<br/>cada semana
+          </h1>
+          <p class="text-base sm:text-lg md:text-2xl text-neutral-300 max-w-xl">Cada domingo a las 21:00 comparte tus tres canciones más escuchadas de la semana.</p>
+          <div class="flex flex-wrap gap-4 mt-6">
+            <a href="https://apps.apple.com/" target="_blank" rel="noopener" class="transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl rounded-lg">
+              <img src="/Download_on_the_App_Store_Badge_ES_RGB_blk_100217.svg" alt="Descargar en App Store" class="h-14 w-auto max-w-[220px] min-w-[160px]" />
+            </a>
+            <a href="https://play.google.com/store" target="_blank" rel="noopener" class="transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl rounded-lg flex items-center border border-[1px] border-neutral-400">
+              <img src="/Spanish.svg" alt="Disponible en Google Play" class="h-14 w-auto max-w-[200px] min-w-[150px]" />
+            </a>
           </div>
         </div>
-      ))}
-    </section>
-    <!-- Benefits Section -->
-    <section class="bg-gradient-to-r from-[#00B290]/40 to-pink-900/40 py-16 md:py-32 mt-20 md:mt-40 px-4 sm:px-8 max-w-6xl mx-auto rounded-3xl">
-      <div class="max-w-5xl mx-auto flex flex-col md:flex-row gap-8 md:gap-16 items-center px-0 md:px-6">
-        <div class="flex-1">
-          <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 font-['Inter',sans-serif]">¿Qué tiene Looped de especial?</h3>
-          <ul class="list-disc list-inside text-base sm:text-lg text-neutral-200 space-y-2">
-            <li>Descubre nueva música cada semana.</li>
-            <li>Conecta con amigos a través de tus gustos musicales.</li>
-            <li>Revive tus mejores momentos musicales.</li>
-            <li>Interfaz moderna, simple y rápida.</li>
-          </ul>
+        <div class="flex-1 flex justify-center items-center">
+          <img src="/mockup1.png" alt="App Looped" class="w-full max-w-[380px] rounded-[2.5rem] object-contain" />
         </div>
-        <div class="flex-1 flex justify-center">
-          <img src="/mockup5.png" alt="Beneficio Looped" class="w-full max-w-[260px] md:max-w-[300px] rounded-[2.5rem] object-contain" />
-        </div>
+      </section>
+      <div class="w-full flex flex-col items-center justify-center gap-4">
+        <span class="italic text-xl sm:text-2xl md:text-3xl font-semibold text-center max-w-2xl">
+          Cambia tu manera de relacionarte con la <span class="text-[#00B290]">música</span>
+        </span>
+        <div class="h-0.5 w-64 rounded-full bg-gradient-to-r from-black via-[#00B290] to-black opacity-80"></div>
       </div>
-    </section>
-    <!-- FAQ Section -->
-    <section class="max-w-4xl mx-auto py-16 md:py-32 px-4 sm:px-8 mt-10 md:mt-20 bg-neutral-900/70 rounded-3xl shadow-xl">
-      <h4 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 text-center text-[#00B290]">Preguntas frecuentes</h4>
-      <div class="space-y-10">
-        {faqs.map(faq => (
-          <details class="bg-neutral-900/90 rounded-2xl p-6 shadow-lg border border-[#00B290]/40 transition-all duration-300 group">
-            <summary class="cursor-pointer text-base sm:text-lg font-semibold flex items-center gap-2 group">
-              <svg xmlns='http://www.w3.org/2000/svg' class='w-5 h-5 text-[#00B290] flex-shrink-0' fill='none' viewBox='0 0 24 24'><path d='M13 18V10V2' stroke='currentColor' stroke-width='1.5' stroke-linecap='round'/><circle cx='9' cy='18' r='4' stroke='currentColor' stroke-width='1.5'/><path d='M19 8C15.6863 8 13 5.31371 13 2' stroke='currentColor' stroke-width='1.5' stroke-linecap='round'/></svg>
-              <span class="flex-1">{faq.question}</span>
-              <svg class="w-4 h-4 ml-2 text-[#00B290] transition-transform duration-300 group-open:rotate-90" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></svg>
-            </summary>
-            <p class="mt-2 text-neutral-300 text-sm sm:text-base">{faq.answer}</p>
-          </details>
+      <!-- Features Section -->
+      <section id="features" class="w-full flex flex-col gap-12 md:gap-24 py-10 md:py-16 bg-black rounded-3xl shadow-lg">
+        {features.map((feature, idx) => (
+          <div class={`flex flex-col md:flex-row ${feature.reverse ? 'md:flex-row-reverse' : ''} items-center gap-8 md:gap-16 w-full`}> 
+            <div class="flex-1 flex justify-center">
+              <img src={feature.image} alt={feature.title} class="w-full max-w-[340px] rounded-[2.5rem] object-contain" />
+            </div>
+            <div class="flex-1 flex flex-col gap-4">
+              <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold font-['Inter',sans-serif]">{feature.title}</h2>
+              <p class="text-base sm:text-lg md:text-xl text-neutral-300">{feature.description}</p>
+            </div>
+          </div>
         ))}
-      </div>
-    </section>
+      </section>
+      <!-- Benefits Section -->
+      <section class="w-full py-10 md:py-16 bg-gradient-to-r from-[#00B290]/40 to-pink-900/40 rounded-3xl shadow-lg">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-8 md:gap-16 items-center px-0 md:px-6">
+          <div class="flex-1">
+            <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 font-['Inter',sans-serif]">¿Qué tiene Looped de especial?</h3>
+            <ul class="list-disc list-inside text-base sm:text-lg text-neutral-200 space-y-2">
+              <li>Descubre nueva música cada semana.</li>
+              <li>Conecta con amigos a través de tus gustos musicales.</li>
+              <li>Revive tus mejores momentos musicales.</li>
+              <li>Interfaz moderna, simple y rápida.</li>
+            </ul>
+          </div>
+          <div class="flex-1 flex justify-center">
+            <img src="/mockup5.png" alt="Beneficio Looped" class="w-full max-w-[300px] rounded-[2.5rem] object-contain" />
+          </div>
+        </div>
+      </section>
+      <!-- FAQ Section -->
+      <section class="w-full py-10 md:py-16 bg-black rounded-3xl shadow-lg">
+        <h4 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 text-center text-[#00B290]">Preguntas frecuentes</h4>
+        <div class="flex flex-col gap-4">
+          {faqs.map(faq => (
+            <details class="bg-transparent rounded-2xl p-0 border-none transition-all duration-300 group overflow-hidden">
+              <summary class="cursor-pointer text-base sm:text-lg font-semibold flex items-center gap-2 group px-4 py-3">
+                <svg xmlns='http://www.w3.org/2000/svg' class='w-5 h-5 text-[#00B290] flex-shrink-0' fill='none' viewBox='0 0 24 24'><path d='M13 18V10V2' stroke='currentColor' stroke-width='1.5' stroke-linecap='round'/><circle cx='9' cy='18' r='4' stroke='currentColor' stroke-width='1.5'/><path d='M19 8C15.6863 8 13 5.31371 13 2' stroke='currentColor' stroke-width='1.5' stroke-linecap='round'/></svg>
+                <span class="flex-1">{faq.question}</span>
+                <svg class="w-4 h-4 ml-2 text-[#00B290] transition-transform duration-300 group-open:rotate-90" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></svg>
+              </summary>
+              <div class="faq-answer transition-[max-height] duration-500 ease-in-out max-h-0 group-open:max-h-40 px-4 overflow-hidden">
+                <p class="mt-1 text-neutral-300 text-sm sm:text-base">{faq.answer}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+    </div>
     <!-- Footer -->
     <footer class="w-full py-12 flex flex-col items-center text-neutral-400 text-sm bg-neutral-900 mt-20">
       <div class="flex gap-6 mb-6">
@@ -169,6 +173,29 @@ const faqs = [
       }, { threshold: 0.1 });
       document.querySelectorAll('.reveal-on-scroll').forEach(el => {
         observer.observe(el);
+      });
+
+      // Animación suave de apertura/cierre para FAQ
+      document.querySelectorAll('section .faq-answer').forEach((el) => {
+        const details = el.closest('details');
+        const answer = el as HTMLElement;
+        if (!details) return;
+        details.addEventListener('toggle', function(e) {
+          if (details.open) {
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+          } else {
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+            // Forzar reflow para que la transición funcione
+            void (answer as HTMLElement).offsetHeight;
+            answer.style.maxHeight = '0px';
+          }
+        });
+        // Inicializar maxHeight en 0 si está cerrado
+        if (!details.open) {
+          answer.style.maxHeight = '0px';
+        } else {
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
       });
     </script>
   </body>
