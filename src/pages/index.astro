@@ -5,7 +5,7 @@ const features = [
   {
     title: "Comparte tu resumen musical",
     description: "Cada domingo a las 21:00, comparte tus tres canciones más escuchadas de la semana y descubre lo que escuchan tus amigos.",
-    image: "/mockup1.png",
+    image: "/mockup2.png",
     reverse: false,
   },
   {
@@ -46,7 +46,7 @@ const faqs = [
     <meta name="description" content="Cada domingo a las 21:00, comparte tu resumen musical semanal con tus tres canciones más escuchadas. Descubre, comparte y revive tu música con Looped." />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&display=swap" rel="stylesheet">
   </head>
-  <body class="bg-neutral-950 text-white font-sans">
+  <body class="bg-black text-white font-sans">
     <!-- Header con logo y texto -->
     <header class="w-full flex flex-col items-center gap-3 px-6 py-6">
       <div class="flex items-center gap-4">
@@ -73,7 +73,7 @@ const faqs = [
         </div>
       </div>
       <div class="flex-1 flex justify-center items-center">
-        <img src="/mockup1.png" alt="App Looped" class="w-[320px] md:w-[380px] rounded-[2.5rem] shadow-2xl border-4 border-neutral-900 bg-neutral-900/80" />
+        <img src="/mockup1.png" alt="App Looped" class="w-[320px] md:w-[380px] rounded-[2.5rem]" />
       </div>
     </section>
 
@@ -82,7 +82,7 @@ const faqs = [
       {features.map((feature, idx) => (
         <div class={`flex flex-col md:flex-row ${feature.reverse ? 'md:flex-row-reverse' : ''} items-center gap-16 max-w-6xl mx-auto`}>
           <div class="flex-1 flex justify-center">
-            <img src={feature.image} alt={feature.title} class="w-[300px] md:w-[340px] rounded-[2.5rem] shadow-xl border-4 border-neutral-900 bg-neutral-900/80" />
+            <img src={feature.image} alt={feature.title} class={feature.image === '/mockup2.png' ? 'w-[180px] md:w-[220px] rounded-[2.5rem]' : 'w-[300px] md:w-[340px] rounded-[2.5rem]'} />
           </div>
           <div class="flex-1 flex flex-col gap-4">
             <h2 class="text-3xl md:text-4xl font-bold font-['Inter',sans-serif]">{feature.title}</h2>
@@ -105,7 +105,7 @@ const faqs = [
           </ul>
         </div>
         <div class="flex-1 flex justify-center">
-          <img src="/mockup5.png" alt="Beneficio Looped" class="w-[260px] md:w-[300px] rounded-[2.5rem] shadow-xl border-4 border-neutral-900 bg-neutral-900/80" />
+          <img src="/mockup5.png" alt="Beneficio Looped" class="w-[260px] md:w-[300px] rounded-[2.5rem]" />
         </div>
       </div>
     </section>
