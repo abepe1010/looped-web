@@ -49,19 +49,19 @@ const faqs = [
   <body class="bg-black text-white font-sans">
     <div class="flex flex-col items-center w-full max-w-6xl mx-auto gap-8 sm:gap-12 px-4 sm:px-8">
       <!-- Header con logo y texto -->
-      <header class="w-full flex flex-col items-center justify-center gap-3 pt-6">
+      <header class="w-full flex flex-col items-center justify-center gap-2 pt-2 sm:pt-4">
         <div class="flex items-center gap-4">
           <img src="/logo.png" alt="Logo Looped" class="w-14 h-14" />
           <span class="text-4xl font-normal font-['Inter',sans-serif] lowercase">looped</span>
         </div>
       </header>
       <!-- Hero Section -->
-      <section id="hero" class="w-full flex flex-col md:flex-row items-center justify-between py-8 md:py-14 gap-8 md:gap-12 bg-black rounded-3xl shadow-lg opacity-0 translate-y-8 transition-all duration-1000 ease-out will-change-transform">
-        <div class="flex-1 flex flex-col justify-center items-start gap-6 px-2 sm:px-6">
-          <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight font-['Inter',sans-serif] bg-gradient-to-br from-white to-[#00B290] bg-clip-text text-transparent">
+      <section id="hero" class="w-full flex flex-col-reverse md:flex-row items-center justify-between py-6 md:py-10 gap-6 md:gap-12 bg-black rounded-3xl shadow-lg opacity-0 translate-y-8 transition-all duration-1000 ease-out will-change-transform reveal-on-scroll">
+        <div class="flex-1 flex flex-col justify-center items-start gap-6 px-2 sm:px-6 w-full">
+          <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight font-['Inter',sans-serif] bg-gradient-to-br from-white to-[#00B290] bg-clip-text text-transparent animate-fadein">
             Tu resumen musical<br/>cada semana
           </h1>
-          <p class="text-base sm:text-lg md:text-2xl text-neutral-300 max-w-xl">Cada domingo a las 21:00 comparte tus tres canciones más escuchadas de la semana.</p>
+          <p class="text-base sm:text-lg md:text-2xl text-neutral-300 max-w-xl animate-fadein delay-100">Cada domingo a las 21:00 comparte tus tres canciones más escuchadas de la semana.</p>
           <div class="flex flex-wrap gap-4 mt-6">
             <a href="https://apps.apple.com/" target="_blank" rel="noopener" class="transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl rounded-lg">
               <img src="/Download_on_the_App_Store_Badge_ES_RGB_blk_100217.svg" alt="Descargar en App Store" class="h-14 w-auto max-w-[220px] min-w-[160px]" />
@@ -71,22 +71,22 @@ const faqs = [
             </a>
           </div>
         </div>
-        <div class="flex-1 flex justify-center items-center">
-          <img src="/mockup1.png" alt="App Looped" class="w-full max-w-[380px] rounded-[2.5rem] object-contain" />
+        <div class="flex-1 flex justify-center items-center w-full mb-4 md:mb-0 animate-fadein delay-150">
+          <img src="/mockup1.png" alt="App Looped" class="w-full max-w-[320px] rounded-[2.5rem] object-contain shadow-xl" />
         </div>
       </section>
-      <div class="w-full flex flex-col items-center justify-center gap-4">
-        <span class="italic text-xl sm:text-2xl md:text-3xl font-semibold text-center max-w-2xl">
-          Cambia tu manera de relacionarte con la <span class="text-[#00B290]">música</span>
-        </span>
-        <div class="h-0.5 w-64 rounded-full bg-gradient-to-r from-black via-[#00B290] to-black opacity-80"></div>
-      </div>
       <!-- Features Section -->
-      <section id="features" class="w-full flex flex-col gap-12 md:gap-24 py-10 md:py-16 bg-black rounded-3xl shadow-lg">
+      <section class="w-full bg-black py-8 md:py-14 px-4 sm:px-8 rounded-3xl shadow-lg reveal-on-scroll">
+        <div class="w-full flex flex-col items-center justify-center gap-4 animate-fadein delay-300 mb-8">
+          <span class="italic text-xl sm:text-2xl md:text-3xl font-semibold text-center max-w-2xl">
+            Cambia tu manera de relacionarte con la <span class="text-[#00B290]">música</span>
+          </span>
+          <div class="h-0.5 w-64 rounded-full bg-gradient-to-r from-black via-[#00B290] to-black opacity-80"></div>
+        </div>
         {features.map((feature, idx) => (
-          <div class={`flex flex-col md:flex-row ${feature.reverse ? 'md:flex-row-reverse' : ''} items-center gap-8 md:gap-16 w-full`}> 
+          <div class={`flex flex-col md:flex-row ${feature.reverse ? 'md:flex-row-reverse' : ''} items-center gap-8 md:gap-20 w-full relative group animate-fadein delay-${idx * 100} py-6 md:py-10`}> 
             <div class="flex-1 flex justify-center">
-              <img src={feature.image} alt={feature.title} class="w-full max-w-[340px] rounded-[2.5rem] object-contain" />
+              <img src={feature.image} alt={feature.title} class="w-full max-w-[272px] rounded-[2.5rem] object-contain shadow-lg" />
             </div>
             <div class="flex-1 flex flex-col gap-4">
               <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold font-['Inter',sans-serif]">{feature.title}</h2>
@@ -97,7 +97,7 @@ const faqs = [
       </section>
     </div>
     <!-- Benefits Section -->
-    <section class="w-full py-10 md:py-16 bg-gradient-to-r from-[#00B290]/40 to-pink-900/40">
+    <section class="w-full py-10 md:py-16 bg-gradient-to-r from-[#00B290]/40 to-pink-900/40 reveal-on-scroll">
       <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-8 md:gap-16 items-center px-4 sm:px-8">
         <div class="flex-1">
           <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 font-['Inter',sans-serif]">¿Qué tiene Looped de especial?</h3>
@@ -115,17 +115,17 @@ const faqs = [
     </section>
     <div class="flex flex-col items-center w-full max-w-6xl mx-auto gap-8 sm:gap-12 px-4 sm:px-8">
       <!-- FAQ Section -->
-      <section class="w-full py-10 md:py-16 bg-black rounded-3xl shadow-lg">
+      <section class="w-full py-10 md:py-16 bg-black rounded-3xl shadow-lg reveal-on-scroll">
         <h4 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 text-center text-[#00B290]">Preguntas frecuentes</h4>
         <div class="flex flex-col gap-4">
-                  {faqs.map(faq => (
-          <details class="bg-transparent rounded-2xl p-0 border border-[#00B290]/30 transition-all duration-300 group overflow-hidden">
+                  {faqs.map((faq, i) => (
+          <details class="bg-transparent rounded-2xl p-0 border border-[#00B290]/30 transition-all duration-500 group overflow-hidden animate-fadein delay-${i * 100}">
             <summary class="cursor-pointer text-base sm:text-lg font-semibold flex items-center gap-2 group px-4 py-3">
                 <svg xmlns='http://www.w3.org/2000/svg' class='w-5 h-5 text-[#00B290] flex-shrink-0' fill='none' viewBox='0 0 24 24'><path d='M13 18V10V2' stroke='currentColor' stroke-width='1.5' stroke-linecap='round'/><circle cx='9' cy='18' r='4' stroke='currentColor' stroke-width='1.5'/><path d='M19 8C15.6863 8 13 5.31371 13 2' stroke='currentColor' stroke-width='1.5' stroke-linecap='round'/></svg>
                 <span class="flex-1">{faq.question}</span>
-                <svg class="w-4 h-4 ml-2 text-[#00B290] transition-transform duration-300 group-open:rotate-90" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></svg>
+                <svg class="w-4 h-4 ml-2 text-[#00B290] transition-transform duration-500 group-open:rotate-90" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></svg>
               </summary>
-              <div class="faq-answer transition-[max-height] duration-500 ease-in-out max-h-0 group-open:max-h-40 px-4 overflow-hidden">
+              <div class="faq-answer transition-[max-height] duration-700 ease-[cubic-bezier(0.77,0,0.175,1)] max-h-0 group-open:max-h-40 px-4 overflow-hidden">
                 <p class="mt-1 mb-4 text-neutral-300 text-sm sm:text-base">{faq.answer}</p>
               </div>
             </details>
@@ -154,7 +154,7 @@ const faqs = [
       </div>
     </footer>
     <script>
-      // Animación de entrada para el hero
+      // Animación de entrada para el hero y reveal-on-scroll
       window.addEventListener('DOMContentLoaded', () => {
         const hero = document.getElementById('hero');
         if (hero) {
@@ -164,7 +164,7 @@ const faqs = [
           }, 100);
         }
       });
-      // Animación reveal-on-scroll para otras secciones (si quieres mantenerlo)
+      // Reveal-on-scroll para secciones
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -184,17 +184,15 @@ const faqs = [
         if (!details) return;
         details.addEventListener('toggle', function(e) {
           if (details.open) {
+            answer.style.transition = 'max-height 0.7s cubic-bezier(0.77,0,0.175,1)';
             answer.style.maxHeight = answer.scrollHeight + 'px';
           } else {
-            // Para el cierre, primero establecemos la altura actual
+            answer.style.transition = 'max-height 0.7s cubic-bezier(0.77,0,0.175,1)';
             answer.style.maxHeight = answer.scrollHeight + 'px';
-            // Forzar reflow para que la transición funcione
-            void answer.offsetHeight;
-            // Luego animamos a 0
+            void (answer as HTMLElement).offsetHeight;
             answer.style.maxHeight = '0px';
           }
         });
-        // Inicializar maxHeight en 0 si está cerrado
         if (!details.open) {
           answer.style.maxHeight = '0px';
         } else {
@@ -202,5 +200,34 @@ const faqs = [
         }
       });
     </script>
+    <style>
+      /* Animaciones fadein para elementos */
+      .animate-fadein {
+        opacity: 0;
+        transform: translateY(24px);
+        animation: fadein-up 0.8s forwards;
+      }
+      .animate-fadein.delay-100 { animation-delay: 0.1s; }
+      .animate-fadein.delay-150 { animation-delay: 0.15s; }
+      .animate-fadein.delay-200 { animation-delay: 0.2s; }
+      .animate-fadein.delay-300 { animation-delay: 0.3s; }
+      .animate-fadein.delay-400 { animation-delay: 0.4s; }
+      .animate-fadein.delay-500 { animation-delay: 0.5s; }
+      @keyframes fadein-up {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @media (max-width: 640px) {
+        #hero { flex-direction: column-reverse !important; gap: 2rem !important; }
+        #hero > div { width: 100%; }
+        #hero .flex-1 { width: 100%; }
+        #hero .flex-row, #hero .flex-row-reverse { flex-direction: row !important; }
+        #hero .flex { flex-direction: column !important; }
+        #hero .flex-row.flex-wrap { flex-direction: row !important; flex-wrap: wrap; }
+        #hero .flex-row.flex-wrap > a { flex: 1 1 45%; min-width: 120px; max-width: 180px; }
+      }
+    </style>
   </body>
 </html>
