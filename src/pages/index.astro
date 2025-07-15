@@ -62,12 +62,12 @@ const faqs = [
             Tu resumen musical<br/>cada semana
           </h1>
           <p class="text-base sm:text-lg md:text-2xl text-neutral-300 max-w-xl animate-fadein delay-100">Cada domingo a las 21:00 comparte tus tres canciones más escuchadas de la semana.</p>
-          <div class="flex flex-wrap gap-4 mt-6">
-            <a href="https://apps.apple.com/" target="_blank" rel="noopener" class="transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl rounded-lg">
-              <img src="/Download_on_the_App_Store_Badge_ES_RGB_blk_100217.svg" alt="Descargar en App Store" class="h-14 w-auto max-w-[220px] min-w-[160px]" />
+          <div class="flex flex-row gap-3 mt-6 w-full max-w-xs sm:max-w-none">
+            <a href="https://apps.apple.com/" target="_blank" rel="noopener" class="flex-1 transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl rounded-lg min-w-[90px] max-w-[120px] sm:min-w-[120px] sm:max-w-[180px]">
+              <img src="/Download_on_the_App_Store_Badge_ES_RGB_blk_100217.svg" alt="Descargar en App Store" class="h-10 w-full object-contain sm:h-14" />
             </a>
-            <a href="https://play.google.com/store" target="_blank" rel="noopener" class="transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl rounded-lg flex items-center border border-[1px] border-neutral-400">
-              <img src="/Spanish.svg" alt="Disponible en Google Play" class="h-14 w-auto max-w-[200px] min-w-[150px]" />
+            <a href="https://play.google.com/store" target="_blank" rel="noopener" class="flex-1 transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl rounded-lg min-w-[90px] max-w-[120px] sm:min-w-[120px] sm:max-w-[180px] flex items-center border border-[1px] border-neutral-400">
+              <img src="/Spanish.svg" alt="Disponible en Google Play" class="h-10 w-full object-contain sm:h-14" />
             </a>
           </div>
         </div>
@@ -84,7 +84,7 @@ const faqs = [
           <div class="h-0.5 w-64 rounded-full bg-gradient-to-r from-black via-[#00B290] to-black opacity-80"></div>
         </div>
         {features.map((feature, idx) => (
-          <div class={`flex flex-col md:flex-row ${feature.reverse ? 'md:flex-row-reverse' : ''} items-center gap-8 md:gap-20 w-full relative group animate-fadein delay-${idx * 100} py-6 md:py-10`}> 
+          <div class={`feature-block flex flex-col md:flex-row ${feature.reverse ? 'md:flex-row-reverse' : ''} items-center gap-8 md:gap-20 w-full relative group reveal-on-scroll py-6 md:py-10`} data-anim="${idx % 2 === 0 ? 'left' : 'right'}" data-feature-idx="${idx}"> 
             <div class="flex-1 flex justify-center">
               <img src={feature.image} alt={feature.title} class="w-full max-w-[272px] rounded-[2.5rem] object-contain shadow-lg" />
             </div>
@@ -117,18 +117,27 @@ const faqs = [
       <!-- FAQ Section -->
       <section class="w-full py-10 md:py-16 bg-black rounded-3xl shadow-lg reveal-on-scroll">
         <h4 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 text-center text-[#00B290]">Preguntas frecuentes</h4>
-        <div class="flex flex-col gap-4">
-                  {faqs.map((faq, i) => (
-          <details class="bg-transparent rounded-2xl p-0 border border-[#00B290]/30 transition-all duration-500 group overflow-hidden animate-fadein delay-${i * 100}">
-            <summary class="cursor-pointer text-base sm:text-lg font-semibold flex items-center gap-2 group px-4 py-3">
-                <svg xmlns='http://www.w3.org/2000/svg' class='w-5 h-5 text-[#00B290] flex-shrink-0' fill='none' viewBox='0 0 24 24'><path d='M13 18V10V2' stroke='currentColor' stroke-width='1.5' stroke-linecap='round'/><circle cx='9' cy='18' r='4' stroke='currentColor' stroke-width='1.5'/><path d='M19 8C15.6863 8 13 5.31371 13 2' stroke='currentColor' stroke-width='1.5' stroke-linecap='round'/></svg>
+        <div class="flex flex-col gap-4" id="faq-list">
+          {faqs.map((faq, i) => (
+            <div class="faq-item bg-transparent rounded-2xl p-0 border border-[#00B290]/30 transition-all duration-300 group overflow-hidden animate-fadein delay-{i * 100}">
+              <button type="button" class="w-full cursor-pointer text-base sm:text-lg font-semibold flex items-center gap-2 group px-4 py-3 bg-transparent outline-none faq-toggle text-left" data-faq-idx="{i}">
+                <svg class="w-5 h-5 flex-shrink-0 text-[#00B290]" viewBox="0 0 218.911 218.911" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M170.975,49.667c-1.143-1.672-2.298-3.205-3.433-4.553c-8.974-10.66-24.952-19.393-42.742-23.36
+                  c-11.391-2.542-24.952-14.857-29.21-19.383c-2.644-2.822-7.118-3.252-10.324-0.602c-1.741,1.44-2.647,3.658-2.648,5.918
+                  l-0.005,10.175l-0.005,9.994c0,0,0,0,0,0l-0.06,124.317c-4.072-1.647-8.464-2.516-12.995-2.518
+                  c-19.083,0-34.617,15.526-34.626,34.61c-0.009,19.094,15.517,34.635,34.611,34.645c0.001,0,0.015,0,0.016,0
+                  c19.085,0,34.619-15.526,34.627-34.611v0c0,0,0,0,0,0l0.054-112.369c3.936,1.326,8.534,2.349,13.901,2.827
+                  c20.538,1.829,34.369,5.939,43.527,12.933c6.839,5.223,7.11,7.762,7.215,8.324c0,0.013,0,0.026,0,0.039
+                  c0.011,0.786,0.699,1.396,1.485,1.396l6.119,0.004v0v0l2.8,0.001c2.596,0.001,4.701-2.102,4.702-4.697V92.71
+                  C183.992,77.021,179.493,62.137,170.975,49.667z M69.553,211.41L69.553,211.41L69.553,211.41L69.553,211.41z"/>
+                </svg>
                 <span class="flex-1">{faq.question}</span>
-                <svg class="w-4 h-4 ml-2 text-[#00B290] transition-transform duration-500 group-open:rotate-90" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></svg>
-              </summary>
-              <div class="faq-answer transition-[max-height] duration-700 ease-[cubic-bezier(0.77,0,0.175,1)] max-h-0 group-open:max-h-40 px-4 overflow-hidden">
+                <svg class="w-4 h-4 ml-2 text-[#00B290] transition-transform duration-300 faq-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></svg>
+              </button>
+              <div class="faq-answer px-4" style="max-height:0; opacity:0; overflow:hidden; transition:max-height 0.35s cubic-bezier(0.77,0,0.175,1), opacity 0.35s cubic-bezier(0.77,0,0.175,1)">
                 <p class="mt-1 mb-4 text-neutral-300 text-sm sm:text-base">{faq.answer}</p>
               </div>
-            </details>
+            </div>
           ))}
         </div>
       </section>
@@ -164,39 +173,69 @@ const faqs = [
           }, 100);
         }
       });
-      // Reveal-on-scroll para secciones
+      // Reveal-on-scroll para secciones y features
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('opacity-100', 'translate-y-0');
+            // Para features, añade la animación personalizada
+            if (entry.target.classList.contains('feature-block')) {
+              const anim = entry.target.getAttribute('data-anim');
+              entry.target.classList.add(`animate-feature-in-${anim}`);
+              entry.target.classList.add('animated');
+            } else {
+              entry.target.classList.add('opacity-100', 'translate-y-0');
+            }
             entry.target.classList.remove('opacity-0', 'translate-y-8');
+            observer.unobserve(entry.target); // Solo animar una vez
           }
         });
       }, { threshold: 0.1 });
       document.querySelectorAll('.reveal-on-scroll').forEach(el => {
         observer.observe(el);
       });
-
-      // Animación suave de apertura/cierre para FAQ
-      document.querySelectorAll('section .faq-answer').forEach((el) => {
-        const details = el.closest('details');
-        const answer = el as HTMLElement;
-        if (!details) return;
-        details.addEventListener('toggle', function(e) {
-          if (details.open) {
-            answer.style.transition = 'max-height 0.7s cubic-bezier(0.77,0,0.175,1)';
-            answer.style.maxHeight = answer.scrollHeight + 'px';
+      // FAQ custom toggle animación
+      document.querySelectorAll('.faq-toggle').forEach((btn, idx) => {
+        btn.addEventListener('click', function() {
+          const item = btn.closest('.faq-item');
+          const answer = item ? item.querySelector('.faq-answer') : null;
+          const arrow = btn.querySelector('.faq-arrow');
+          if (!item || !answer || !arrow) return;
+          const isOpen = item.classList.contains('open');
+          if (isOpen) {
+            (answer as HTMLElement).style.maxHeight = '0px';
+            (answer as HTMLElement).style.opacity = '0';
+            item.classList.remove('open');
+            (arrow as HTMLElement).style.transform = '';
           } else {
-            answer.style.transition = 'max-height 0.7s cubic-bezier(0.77,0,0.175,1)';
-            answer.style.maxHeight = answer.scrollHeight + 'px';
-            void (answer as HTMLElement).offsetHeight;
-            answer.style.maxHeight = '0px';
+            (answer as HTMLElement).style.maxHeight = (answer as HTMLElement).scrollHeight + 'px';
+            (answer as HTMLElement).style.opacity = '1';
+            item.classList.add('open');
+            (arrow as HTMLElement).style.transform = 'rotate(90deg)';
           }
         });
-        if (!details.open) {
-          answer.style.maxHeight = '0px';
-        } else {
-          answer.style.maxHeight = answer.scrollHeight + 'px';
+      });
+      // Efecto de reacción de features al hacer scroll arriba/abajo
+      let lastScrollY = window.scrollY;
+      let ticking = false;
+      function handleFeatureScrollDirection() {
+        const features = document.querySelectorAll('.feature-block.animated');
+        const currentY = window.scrollY;
+        const direction = currentY > lastScrollY ? 'down' : 'up';
+        features.forEach(el => {
+          el.classList.remove('scroll-up', 'scroll-down');
+          if (direction === 'down') {
+            el.classList.add('scroll-down');
+          } else {
+            el.classList.add('scroll-up');
+          }
+        });
+        lastScrollY = currentY;
+        ticking = false;
+      }
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(handleFeatureScrollDirection);
+          ticking = true;
         }
       });
     </script>
@@ -219,6 +258,62 @@ const faqs = [
           transform: translateY(0);
         }
       }
+      /* Estado inicial de features: oculto y desplazado */
+      .feature-block[data-anim="left"] {
+        opacity: 0;
+        transform: translateX(-80px) scale(0.96);
+        transition: none;
+      }
+      .feature-block[data-anim="right"] {
+        opacity: 0;
+        transform: translateX(80px) scale(0.96);
+        transition: none;
+      }
+      .feature-block.animated {
+        animation-duration: 0.7s;
+        animation-fill-mode: forwards;
+        animation-timing-function: cubic-bezier(0.77,0,0.175,1);
+      }
+      .feature-block.animate-feature-in-left.animated {
+        animation-name: feature-in-left-fancy;
+      }
+      .feature-block.animate-feature-in-right.animated {
+        animation-name: feature-in-right-fancy;
+      }
+      @keyframes feature-in-left-fancy {
+        0% { opacity: 0; transform: translateX(-80px) scale(0.96); }
+        80% { opacity: 1; transform: translateX(8px) scale(1.03); }
+        100% { opacity: 1; transform: translateX(0) scale(1); }
+      }
+      @keyframes feature-in-right-fancy {
+        0% { opacity: 0; transform: translateX(80px) scale(0.96); }
+        80% { opacity: 1; transform: translateX(-8px) scale(1.03); }
+        100% { opacity: 1; transform: translateX(0) scale(1); }
+      }
+      /* Elimina parallax y añade efecto de scroll direction a features */
+      .feature-block {
+        transition: box-shadow 0.3s cubic-bezier(0.77,0,0.175,1), transform 0.3s cubic-bezier(0.77,0,0.175,1);
+      }
+      .feature-block.scroll-up {
+        box-shadow: 0 8px 32px 0 #00B29033;
+        transform: scale(1.03) translateY(-6px);
+      }
+      .feature-block.scroll-down {
+        box-shadow: 0 2px 12px 0 #00B29022;
+        transform: scale(0.98) translateY(6px);
+      }
+      /* FAQ animación mejorada */
+      .faq-answer {
+        transition: max-height 0.35s cubic-bezier(0.77,0,0.175,1), opacity 0.35s cubic-bezier(0.77,0,0.175,1);
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        will-change: max-height, opacity;
+      }
+      details[open] .faq-answer {
+        opacity: 1;
+        max-height: 600px;
+      }
       @media (max-width: 640px) {
         #hero { flex-direction: column-reverse !important; gap: 2rem !important; }
         #hero > div { width: 100%; }
@@ -227,6 +322,7 @@ const faqs = [
         #hero .flex { flex-direction: column !important; }
         #hero .flex-row.flex-wrap { flex-direction: row !important; flex-wrap: wrap; }
         #hero .flex-row.flex-wrap > a { flex: 1 1 45%; min-width: 120px; max-width: 180px; }
+        #hero .flex-row, #hero .flex-row-reverse, #hero .flex-row.flex-wrap { gap: 0.75rem !important; }
       }
     </style>
   </body>
