@@ -109,7 +109,8 @@ const faqs = [
           </ul>
         </div>
         <div class="flex-1 flex justify-center">
-          <img src="/mockup5.png" alt="Beneficio Looped" class="w-full max-w-[300px] rounded-[2.5rem] object-contain" />
+          <img src="/mockup6.png" alt="Beneficio Looped móvil" class="block sm:hidden w-full max-w-[300px] rounded-t-[2.5rem] rounded-b-none object-contain benefits-img-mobile" />
+          <img src="/mockup5.png" alt="Beneficio Looped desktop" class="w-full max-w-[300px] rounded-[2.5rem] object-contain hidden sm:block" />
         </div>
       </div>
     </section>
@@ -331,6 +332,25 @@ const faqs = [
         #hero .flex-row.flex-wrap { flex-direction: row !important; flex-wrap: wrap; }
         #hero .flex-row.flex-wrap > a { flex: 1 1 45%; min-width: 120px; max-width: 180px; }
         #hero .flex-row, #hero .flex-row-reverse, #hero .flex-row.flex-wrap { gap: 0.75rem !important; }
+        /* No extra styles needed, keep it simple */
+        .benefits-img-mobile {
+          transform: translateY(42px);
+          animation: emerge-gradient 1.5s cubic-bezier(0.77,0,0.175,1);
+        }
+        @keyframes emerge-gradient {
+          0% {
+            opacity: 0;
+            transform: translateY(102px);
+          }
+          70% {
+            opacity: 1;
+            transform: translateY(34px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(42px);
+          }
+        }
       }
     </style>
   </body>
