@@ -119,6 +119,11 @@ const faqs = [
           let activeIdx = 0;
           let autoInterval: ReturnType<typeof setInterval> | undefined;
           let progressTimeout: ReturnType<typeof setTimeout> | undefined;
+          let isCarouselVisible = false;
+          let observerCarousel: IntersectionObserver | undefined;
+          let progressStartTime: number | null = null;
+          let progressElapsed: number = 0;
+          const SLIDE_DURATION = 5000;
           function updateCarousel() {
             if (!carousel) return;
             const cards = carousel.querySelectorAll('[data-carousel-idx]');
@@ -144,6 +149,8 @@ const faqs = [
           function goToSlide(idx: number) {
             if (!carousel) return;
             activeIdx = idx;
+            progressElapsed = 0;
+            progressStartTime = Date.now();
             carousel.scrollTo({ left: carousel.offsetWidth * activeIdx * 0.8, behavior: 'smooth' });
             updateCarousel();
             animateProgressBar();
@@ -158,7 +165,8 @@ const faqs = [
                   bar.style.width = '0%';
                   if (idx === activeIdx) {
                     setTimeout(() => {
-                      bar.style.transition = 'width 5s linear';
+                      const duration = Math.max(0, SLIDE_DURATION - progressElapsed);
+                      bar.style.transition = `width ${duration}ms linear`;
                       bar.style.width = '100%';
                     }, 50);
                   }
@@ -167,13 +175,19 @@ const faqs = [
             }
           }
           function startAutoSlide() {
-            if (autoInterval) clearInterval(autoInterval);
+            if (autoInterval) clearTimeout(autoInterval);
+            if (progressTimeout) clearTimeout(progressTimeout);
             if (!carousel) return;
-            animateProgressBar();
-            autoInterval = setInterval(() => {
-              activeIdx = (activeIdx + 1) % carousel.children.length;
-              goToSlide(activeIdx);
-            }, 5000);
+            if (isCarouselVisible) {
+              // Si se reanuda, usa el tiempo restante
+              animateProgressBar();
+              progressStartTime = Date.now();
+              autoInterval = setTimeout(() => {
+                progressElapsed = 0;
+                goToSlide((activeIdx + 1) % carousel.children.length);
+                startAutoSlide();
+              }, Math.max(0, SLIDE_DURATION - progressElapsed));
+            }
           }
           // Sincroniza el slide activo al hacer swipe/touch
           if (carousel) {
@@ -200,18 +214,10 @@ const faqs = [
             });
           }
           if (leftBtn && rightBtn && carousel) {
-            leftBtn.onclick = () => { activeIdx = Math.max(0, activeIdx - 1); goToSlide(activeIdx); startAutoSlide(); };
-            rightBtn.onclick = () => {
-              if (activeIdx === carousel.children.length - 1) {
-                activeIdx = 0;
-              } else {
-                activeIdx = activeIdx + 1;
-              }
-              goToSlide(activeIdx);
-              startAutoSlide();
-            };
+            leftBtn.onclick = () => { goToSlide(Math.max(0, activeIdx - 1)); startAutoSlide(); };
+            rightBtn.onclick = () => { goToSlide((activeIdx === carousel.children.length - 1) ? 0 : activeIdx + 1); startAutoSlide(); };
             updateCarousel();
-            startAutoSlide();
+            // El auto-slide solo se inicia si el carrusel es visible
           }
           // Añade click a las rayitas del slider
           if (indicators) {
@@ -221,6 +227,37 @@ const faqs = [
                 startAutoSlide();
               });
             });
+          }
+          // IntersectionObserver para detectar visibilidad del carrusel
+          if (carousel) {
+            observerCarousel = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  isCarouselVisible = true;
+                  startAutoSlide();
+                } else {
+                  isCarouselVisible = false;
+                  if (autoInterval) clearTimeout(autoInterval);
+                  // Pausa: guarda el tiempo transcurrido
+                  if (progressStartTime) {
+                    progressElapsed += Date.now() - progressStartTime;
+                    progressStartTime = null;
+                  }
+                  // Pausa la barrita (quita transición y deja el ancho actual)
+                  if (indicators) {
+                    indicators.querySelectorAll('span[data-indicator-idx]').forEach((el, idx) => {
+                      const bar = el.querySelector('.progress-bar') as HTMLElement;
+                      if (bar && idx === activeIdx) {
+                        const percent = Math.min(100, (progressElapsed / SLIDE_DURATION) * 100);
+                        bar.style.transition = 'none';
+                        bar.style.width = percent + '%';
+                      }
+                    });
+                  }
+                }
+              });
+            }, { threshold: 0.4 });
+            observerCarousel.observe(carousel);
           }
         </script>
       </section>
