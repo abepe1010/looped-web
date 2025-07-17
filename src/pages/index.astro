@@ -47,26 +47,26 @@ const faqs = [
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&display=swap" rel="stylesheet">
   </head>
   <body class="bg-black text-white font-sans">
-    <div class="flex flex-col items-center w-full max-w-6xl mx-auto gap-8 sm:gap-12 px-4 sm:px-8">
+    <div class="flex flex-col items-center w-full max-w-6xl mx-auto gap-4 sm:gap-2 px-4 sm:px-8">
       <!-- Header con logo y texto -->
-      <header class="w-full flex flex-col items-center justify-center gap-2 pt-2 sm:pt-4">
-        <div class="flex items-center gap-4">
-          <img src="/logo.png" alt="Logo Looped" class="w-14 h-14" />
-          <span class="text-4xl font-normal font-['Inter',sans-serif] lowercase">looped</span>
+      <header class="w-full flex flex-col items-center justify-center gap-0 pt-6 sm:pt-0 md:pt-0">
+        <div class="flex items-center gap-2 mb-0">
+          <img src="/logo.png" alt="Logo Looped" class="w-14 h-14 mb-0" />
+          <span class="text-4xl font-normal font-['Raleway',sans-serif] lowercase">looped</span>
         </div>
       </header>
       <!-- Hero Section -->
-      <section id="hero" class="w-full flex flex-col-reverse md:flex-row items-center justify-between py-6 md:py-10 gap-6 md:gap-12 bg-black rounded-3xl shadow-lg opacity-0 translate-y-8 transition-all duration-1000 ease-out will-change-transform reveal-on-scroll">
-        <div class="flex-1 flex flex-col justify-center items-start gap-6 px-2 sm:px-6 w-full">
+      <section id="hero" class="w-full flex flex-col-reverse md:flex-row items-start justify-between min-h-screen py-0 gap-4 md:gap-8 bg-black rounded-3xl shadow-lg opacity-0 translate-y-8 transition-all duration-1000 ease-out will-change-transform reveal-on-scroll mt-10">
+        <div class="flex-1 flex flex-col justify-center items-start gap-6 px-2 sm:px-6 w-full mt-4">
           <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight font-['Inter',sans-serif] bg-gradient-to-br from-white to-[#00B290] bg-clip-text text-transparent animate-fadein">
             Tu resumen musical<br/>cada semana
           </h1>
           <p class="text-base sm:text-lg md:text-2xl text-neutral-300 max-w-xl animate-fadein delay-100">Cada domingo a las 21:00 comparte tus tres canciones más escuchadas de la semana.</p>
-          <div class="flex flex-row items-center gap-3 mt-6 w-full">
-            <a href="https://apps.apple.com/" target="_blank" rel="noopener" class="flex-1 h-[60px] sm:h-16 flex items-center justify-center transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl rounded-lg bg-black">
+          <div class="flex flex-col md:flex-row items-center md:items-start md:justify-start gap-3 mt-6 w-full md:w-auto">
+            <a href="https://apps.apple.com/" target="_blank" rel="noopener" class="h-[60px] sm:h-16 flex items-center justify-center transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl rounded-lg bg-black">
               <img src="/Download_on_the_App_Store_Badge_ES_RGB_blk_100217.svg" alt="Descargar en App Store" class="h-[60px] sm:h-16 object-contain" />
             </a>
-            <a href="https://play.google.com/store" target="_blank" rel="noopener" class="flex-1 h-14 sm:h-16 flex items-center justify-center transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl rounded-lg bg-black">
+            <a href="https://play.google.com/store" target="_blank" rel="noopener" class="h-14 sm:h-16 flex items-center justify-center transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl rounded-lg bg-black">
               <img src="/Spanish.svg" alt="Disponible en Google Play" class="h-14 sm:h-16 object-contain border border-[1.5px] border-neutral-400 rounded-lg" />
             </a>
           </div>
@@ -76,7 +76,7 @@ const faqs = [
         </div>
       </section>
       <!-- Features Section -->
-      <section class="w-full bg-black py-8 md:py-14 px-4 sm:px-8 rounded-3xl shadow-lg reveal-on-scroll">
+      <section class="w-full bg-black py-6 md:py-10 px-4 sm:px-8 rounded-3xl shadow-lg reveal-on-scroll mt-4">
         <div class="w-full flex flex-col items-center justify-center gap-4 animate-fadein delay-300 mb-8">
           <span class="italic text-xl sm:text-2xl md:text-3xl font-semibold text-center max-w-2xl">
             Cambia tu manera de relacionarte con la <span class="text-[#00B290]">música</span>
