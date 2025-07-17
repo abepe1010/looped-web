@@ -201,7 +201,15 @@ const faqs = [
           }
           if (leftBtn && rightBtn && carousel) {
             leftBtn.onclick = () => { activeIdx = Math.max(0, activeIdx - 1); goToSlide(activeIdx); startAutoSlide(); };
-            rightBtn.onclick = () => { activeIdx = Math.min(carousel.children.length - 1, activeIdx + 1); goToSlide(activeIdx); startAutoSlide(); };
+            rightBtn.onclick = () => {
+              if (activeIdx === carousel.children.length - 1) {
+                activeIdx = 0;
+              } else {
+                activeIdx = activeIdx + 1;
+              }
+              goToSlide(activeIdx);
+              startAutoSlide();
+            };
             updateCarousel();
             startAutoSlide();
           }
