@@ -79,18 +79,18 @@ const faqs = [
       <!-- Carrusel móvil -->
       <section class="w-full bg-black py-10 md:py-14 px-4 sm:px-8 rounded-3xl shadow-lg reveal-on-scroll mt-16 md:mt-0 block sm:hidden">
         <div class="w-full flex flex-col items-center justify-center gap-2 mb-8">
-          <span class="italic text-lg font-semibold text-center max-w-2xl">
+          <span class="italic text-lg sm:text-xl font-semibold text-center max-w-2xl" style="font-size:clamp(1.3rem,4.5vw,2.1rem)">
             Cambia tu manera de relacionarte con la <span class="text-[#00B290]">música</span>
           </span>
           <div class="h-0.5 w-32 rounded-full bg-gradient-to-r from-black via-[#00B290] to-black opacity-80 mt-2"></div>
         </div>
         <div class="relative">
-          <button id="carousel-left" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/40 hover:bg-white/70 transition-colors duration-200 rounded-full w-10 h-10 flex items-center justify-center shadow-lg ring-1 ring-white/30 backdrop-blur-md" style="box-shadow:0 2px 8px #0002; background:linear-gradient(135deg,rgba(255,255,255,0.65) 60%,rgba(255,255,255,0.35) 100%);" aria-label="Anterior">
-            <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="none"/><path d="M15 6l-6 6 6 6" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <button id="carousel-left" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/40 hover:bg-white/50 transition-colors duration-200 rounded-full w-10 h-10 flex items-center justify-center shadow-lg backdrop-blur-md" style="box-shadow:0 2px 8px #0002;" aria-label="Anterior">
+            <svg width="28" height="28" fill="none" viewBox="0 0 28 28"><path d="M17 7L11 14L17 21" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/></svg>
           </button>
           <div id="features-carousel" class="flex overflow-x-auto gap-4 pb-2 hide-scrollbar scroll-smooth snap-x snap-mandatory">
             {features.map((feature, idx) => (
-              <div class={`transition-all duration-300 min-w-[70vw] max-w-xs bg-neutral-900/80 rounded-3xl flex flex-col items-center justify-center p-6 snap-center shadow-lg
+              <div class={`transition-all duration-300 min-w-[85vw] max-w-[340px] bg-neutral-900/80 rounded-3xl flex flex-col items-center justify-center p-6 snap-center shadow-lg
                 ${idx === 0 ? 'scale-100 shadow-2xl bg-black/90' : 'scale-90 opacity-60 blur-[1.5px]'}
               `} data-carousel-idx={idx}>
                 <img src={feature.image} alt={feature.title} class="w-full max-w-[180px] rounded-[2.5rem] object-contain shadow-lg mb-4" />
@@ -99,16 +99,16 @@ const faqs = [
               </div>
             ))}
           </div>
-          <button id="carousel-right" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/40 hover:bg-white/70 transition-colors duration-200 rounded-full w-10 h-10 flex items-center justify-center shadow-lg ring-1 ring-white/30 backdrop-blur-md" style="box-shadow:0 2px 8px #0002; background:linear-gradient(135deg,rgba(255,255,255,0.65) 60%,rgba(255,255,255,0.35) 100%);" aria-label="Siguiente">
-            <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="none"/><path d="M9 6l6 6-6 6" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <button id="carousel-right" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/40 hover:bg-white/50 transition-colors duration-200 rounded-full w-10 h-10 flex items-center justify-center shadow-lg backdrop-blur-md" style="box-shadow:0 2px 8px #0002;" aria-label="Siguiente">
+            <svg width="28" height="28" fill="none" viewBox="0 0 28 28"><path d="M11 7L17 14L11 21" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/></svg>
           </button>
-          <div id="carousel-indicators" class="flex justify-center gap-2 mt-6">
-            {features.map((_, idx) => (
-              <span class="relative block h-1.5 rounded-full transition-all duration-300 overflow-hidden w-3 bg-white/40" data-indicator-idx={idx}>
-                <span class="absolute left-0 top-0 h-full bg-[#00B290] transition-all duration-[5000ms] progress-bar" style="width: 0%"></span>
-              </span>
-            ))}
-          </div>
+        </div>
+        <div id="carousel-indicators" class="flex justify-center gap-2 mt-6">
+          {features.map((_, idx) => (
+            <span class="relative block h-1.5 rounded-full transition-all duration-300 overflow-hidden w-3 bg-white/40 cursor-pointer" data-indicator-idx={idx}>
+              <span class="absolute left-0 top-0 h-full bg-[#00B290] transition-all duration-[5000ms] progress-bar" style="width: 0%"></span>
+            </span>
+          ))}
         </div>
         <script>
           // Carrusel scroll simple y slide activo y auto
@@ -175,11 +175,44 @@ const faqs = [
               goToSlide(activeIdx);
             }, 5000);
           }
+          // Sincroniza el slide activo al hacer swipe/touch
+          if (carousel) {
+            carousel.addEventListener('scroll', () => {
+              const cards = Array.from(carousel.querySelectorAll('[data-carousel-idx]')) as HTMLElement[];
+              const carouselRect = carousel.getBoundingClientRect();
+              let minDist = Infinity;
+              let newIdx = activeIdx;
+              cards.forEach((card, idx) => {
+                const cardRect = card.getBoundingClientRect();
+                const cardCenter = cardRect.left + cardRect.width / 2;
+                const carouselCenter = carouselRect.left + carouselRect.width / 2;
+                const dist = Math.abs(cardCenter - carouselCenter);
+                if (dist < minDist) {
+                  minDist = dist;
+                  newIdx = idx;
+                }
+              });
+              if (newIdx !== activeIdx) {
+                activeIdx = newIdx;
+                updateCarousel();
+                animateProgressBar();
+              }
+            });
+          }
           if (leftBtn && rightBtn && carousel) {
             leftBtn.onclick = () => { activeIdx = Math.max(0, activeIdx - 1); goToSlide(activeIdx); startAutoSlide(); };
             rightBtn.onclick = () => { activeIdx = Math.min(carousel.children.length - 1, activeIdx + 1); goToSlide(activeIdx); startAutoSlide(); };
             updateCarousel();
             startAutoSlide();
+          }
+          // Añade click a las rayitas del slider
+          if (indicators) {
+            indicators.querySelectorAll('span[data-indicator-idx]').forEach((el, idx: number) => {
+              el.addEventListener('click', () => {
+                goToSlide(idx);
+                startAutoSlide();
+              });
+            });
           }
         </script>
       </section>
@@ -459,6 +492,18 @@ const faqs = [
             transform: translateY(42px);
           }
         }
+      }
+      .glossy-arrow::before {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        right: 2px;
+        height: 40%;
+        border-radius: 9999px;
+        background: radial-gradient(ellipse at top, rgba(255,255,255,0.7) 60%, rgba(255,255,255,0.1) 100%);
+        pointer-events: none;
+        z-index: 1;
       }
     </style>
   </body>
