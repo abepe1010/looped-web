@@ -76,12 +76,120 @@ const faqs = [
         </div>
       </section>
       <!-- Features Section -->
-      <section class="w-full bg-black py-6 md:py-10 px-4 sm:px-8 rounded-3xl shadow-lg reveal-on-scroll mt-4">
-        <div class="w-full flex flex-col items-center justify-center gap-4 animate-fadein delay-300 mb-8">
+      <!-- Carrusel móvil -->
+      <section class="w-full bg-black py-10 md:py-14 px-4 sm:px-8 rounded-3xl shadow-lg reveal-on-scroll mt-16 md:mt-0 block sm:hidden">
+        <div class="w-full flex flex-col items-center justify-center gap-2 mb-8">
+          <span class="italic text-lg font-semibold text-center max-w-2xl">
+            Cambia tu manera de relacionarte con la <span class="text-[#00B290]">música</span>
+          </span>
+          <div class="h-0.5 w-32 rounded-full bg-gradient-to-r from-black via-[#00B290] to-black opacity-80 mt-2"></div>
+        </div>
+        <div class="relative">
+          <button id="carousel-left" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/40 hover:bg-white/70 transition-colors duration-200 rounded-full w-10 h-10 flex items-center justify-center shadow-lg ring-1 ring-white/30 backdrop-blur-md" style="box-shadow:0 2px 8px #0002; background:linear-gradient(135deg,rgba(255,255,255,0.65) 60%,rgba(255,255,255,0.35) 100%);" aria-label="Anterior">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="none"/><path d="M15 6l-6 6 6 6" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div id="features-carousel" class="flex overflow-x-auto gap-4 pb-2 hide-scrollbar scroll-smooth snap-x snap-mandatory">
+            {features.map((feature, idx) => (
+              <div class={`transition-all duration-300 min-w-[70vw] max-w-xs bg-neutral-900/80 rounded-3xl flex flex-col items-center justify-center p-6 snap-center shadow-lg
+                ${idx === 0 ? 'scale-100 shadow-2xl bg-black/90' : 'scale-90 opacity-60 blur-[1.5px]'}
+              `} data-carousel-idx={idx}>
+                <img src={feature.image} alt={feature.title} class="w-full max-w-[180px] rounded-[2.5rem] object-contain shadow-lg mb-4" />
+                <h2 class="text-2xl font-bold font-['Inter',sans-serif] mb-2 text-center text-white drop-shadow-lg">{feature.title}</h2>
+                <p class="text-base text-neutral-300 text-center">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+          <button id="carousel-right" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/40 hover:bg-white/70 transition-colors duration-200 rounded-full w-10 h-10 flex items-center justify-center shadow-lg ring-1 ring-white/30 backdrop-blur-md" style="box-shadow:0 2px 8px #0002; background:linear-gradient(135deg,rgba(255,255,255,0.65) 60%,rgba(255,255,255,0.35) 100%);" aria-label="Siguiente">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="none"/><path d="M9 6l6 6-6 6" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div id="carousel-indicators" class="flex justify-center gap-2 mt-6">
+            {features.map((_, idx) => (
+              <span class="relative block h-1.5 rounded-full transition-all duration-300 overflow-hidden w-3 bg-white/40" data-indicator-idx={idx}>
+                <span class="absolute left-0 top-0 h-full bg-[#00B290] transition-all duration-[5000ms] progress-bar" style="width: 0%"></span>
+              </span>
+            ))}
+          </div>
+        </div>
+        <script>
+          // Carrusel scroll simple y slide activo y auto
+          const leftBtn = document.getElementById('carousel-left');
+          const rightBtn = document.getElementById('carousel-right');
+          const carousel = document.getElementById('features-carousel');
+          const indicators = document.getElementById('carousel-indicators');
+          let activeIdx = 0;
+          let autoInterval: ReturnType<typeof setInterval> | undefined;
+          let progressTimeout: ReturnType<typeof setTimeout> | undefined;
+          function updateCarousel() {
+            if (!carousel) return;
+            const cards = carousel.querySelectorAll('[data-carousel-idx]');
+            cards.forEach((el, idx: number) => {
+              el.classList.toggle('scale-100', idx === activeIdx);
+              el.classList.toggle('shadow-2xl', idx === activeIdx);
+              el.classList.toggle('bg-black/90', idx === activeIdx);
+              el.classList.toggle('opacity-60', idx !== activeIdx);
+              el.classList.toggle('blur-[1.5px]', idx !== activeIdx);
+              el.classList.toggle('scale-90', idx !== activeIdx);
+            });
+            if (indicators) {
+              indicators.querySelectorAll('span[data-indicator-idx]').forEach((el, idx: number) => {
+                el.className = idx === activeIdx
+                  ? 'relative block h-1.5 w-8 rounded-full bg-[#00B290]/30 transition-all duration-300 overflow-hidden'
+                  : 'relative block h-1.5 w-3 rounded-full bg-white/40 transition-all duration-300 overflow-hidden';
+                // Reset bar width
+                const bar = el.querySelector('.progress-bar') as HTMLElement;
+                if (bar) bar.style.width = '0%';
+              });
+            }
+          }
+          function goToSlide(idx: number) {
+            if (!carousel) return;
+            activeIdx = idx;
+            carousel.scrollTo({ left: carousel.offsetWidth * activeIdx * 0.8, behavior: 'smooth' });
+            updateCarousel();
+            animateProgressBar();
+          }
+          function animateProgressBar() {
+            if (progressTimeout) clearTimeout(progressTimeout);
+            if (indicators) {
+              indicators.querySelectorAll('span[data-indicator-idx]').forEach((el, idx: number) => {
+                const bar = el.querySelector('.progress-bar') as HTMLElement;
+                if (bar) {
+                  bar.style.transition = 'none';
+                  bar.style.width = '0%';
+                  if (idx === activeIdx) {
+                    setTimeout(() => {
+                      bar.style.transition = 'width 5s linear';
+                      bar.style.width = '100%';
+                    }, 50);
+                  }
+                }
+              });
+            }
+          }
+          function startAutoSlide() {
+            if (autoInterval) clearInterval(autoInterval);
+            if (!carousel) return;
+            animateProgressBar();
+            autoInterval = setInterval(() => {
+              activeIdx = (activeIdx + 1) % carousel.children.length;
+              goToSlide(activeIdx);
+            }, 5000);
+          }
+          if (leftBtn && rightBtn && carousel) {
+            leftBtn.onclick = () => { activeIdx = Math.max(0, activeIdx - 1); goToSlide(activeIdx); startAutoSlide(); };
+            rightBtn.onclick = () => { activeIdx = Math.min(carousel.children.length - 1, activeIdx + 1); goToSlide(activeIdx); startAutoSlide(); };
+            updateCarousel();
+            startAutoSlide();
+          }
+        </script>
+      </section>
+      <!-- Features grid desktop -->
+      <section class="w-full bg-black py-10 md:py-14 px-4 sm:px-8 rounded-3xl shadow-lg reveal-on-scroll mt-2 md:mt-0 hidden sm:block">
+        <div class="w-full flex flex-col items-center justify-center gap-2 animate-fadein delay-300 mb-8 mt-10">
           <span class="italic text-xl sm:text-2xl md:text-3xl font-semibold text-center max-w-2xl">
             Cambia tu manera de relacionarte con la <span class="text-[#00B290]">música</span>
           </span>
-          <div class="h-0.5 w-64 rounded-full bg-gradient-to-r from-black via-[#00B290] to-black opacity-80"></div>
+          <div class="h-0.5 w-64 rounded-full bg-gradient-to-r from-black via-[#00B290] to-black opacity-80 mt-2"></div>
         </div>
         {features.map((feature, idx) => (
           <div class={`feature-block flex flex-col md:flex-row ${feature.reverse ? 'md:flex-row-reverse' : ''} items-center gap-8 md:gap-20 w-full relative group reveal-on-scroll py-6 md:py-10`} data-anim="${idx % 2 === 0 ? 'left' : 'right'}" data-feature-idx="${idx}"> 
