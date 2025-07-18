@@ -47,17 +47,17 @@ const faqs = [
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&display=swap" rel="stylesheet">
   </head>
   <body class="bg-black text-white font-sans">
-    <div class="flex flex-col items-center w-full max-w-6xl mx-auto gap-4 sm:gap-2 px-4 sm:px-8">
-      <!-- Header con logo y texto -->
-      <header class="w-full flex flex-col items-center justify-center gap-0 pt-6 sm:pt-0 md:pt-0 md:mt-4">
+    <main class="flex flex-col items-center w-full max-w-6xl mx-auto gap-4 sm:gap-2 px-4 sm:px-8">
+      <!-- NAVBAR -->
+      <header class="w-full flex flex-col items-center justify-center gap-0 pt-6 sm:pt-0 md:pt-0 md:mt-2">
         <div class="flex items-center gap-2 mb-0">
           <img src="/logo.png" alt="Logo Looped" class="w-14 h-14 mb-0" />
-          <span class="text-4xl font-normal font-['Raleway',sans-serif] lowercase">looped</span>
+          <span class="text-4xl font-semibold font-['Raleway',sans-serif] lowercase">looped</span>
         </div>
       </header>
-      <!-- Hero Section -->
-      <section id="hero" class="w-full flex flex-col-reverse md:flex-row items-center justify-center min-h-screen h-screen py-0 gap-4 md:gap-8 bg-black rounded-3xl shadow-lg opacity-0 translate-y-8 transition-all duration-1000 ease-out will-change-transform reveal-on-scroll mt-0">
-        <div class="flex-1 flex flex-col justify-center items-start gap-6 px-2 sm:px-6 w-full mt-4">
+      <!-- HERO -->
+      <section id="hero" class="relative w-full min-h-0 md:h-screen md:min-h-screen overflow-hidden flex flex-col-reverse md:flex-row items-start md:items-center justify-start md:justify-center py-0 gap-4 md:gap-8 bg-black rounded-3xl shadow-lg opacity-0 translate-y-8 transition-all duration-1000 ease-out will-change-transform reveal-on-scroll mt-0">
+        <div class="flex flex-col items-center justify-start flex-1 gap-6 px-2 sm:px-6 w-full mt-4">
           <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight font-['Inter',sans-serif] bg-gradient-to-br from-white to-[#00B290] bg-clip-text text-transparent animate-fadein">
             Tu resumen musical<br/>cada semana
           </h1>
@@ -75,9 +75,8 @@ const faqs = [
           <img src="/mockup1.png" alt="App Looped" class="w-full max-w-[320px] rounded-[2.5rem] object-contain shadow-xl" />
         </div>
       </section>
-      <!-- Features Section -->
-      <!-- Carrusel móvil -->
-      <section class="w-full bg-black py-10 md:py-14 px-4 sm:px-8 rounded-3xl shadow-lg reveal-on-scroll mt-16 md:mt-0 block sm:hidden">
+      <!-- FEATURES/CARRUSEL -->
+      <section class="w-full bg-black py-10 md:py-14 px-4 sm:px-8 rounded-3xl shadow-lg reveal-on-scroll mt-32 md:mt-0 block sm:hidden">
         <div class="w-full flex flex-col items-center justify-center gap-2 mb-8">
           <span class="italic text-lg sm:text-xl font-semibold text-center max-w-2xl" style="font-size:clamp(1.3rem,4.5vw,2.1rem)">
             Cambia tu manera de relacionarte con la <span class="text-[#00B290]">música</span>
@@ -262,7 +261,7 @@ const faqs = [
         </script>
       </section>
       <!-- Features grid desktop -->
-      <section class="w-full bg-black py-10 md:py-14 px-4 sm:px-8 rounded-3xl shadow-lg reveal-on-scroll mt-2 md:mt-0 hidden sm:block">
+      <section class="w-full bg-black py-10 md:py-14 px-4 sm:px-8 rounded-3xl shadow-lg reveal-on-scroll mt-32 md:mt-0 hidden sm:block">
         <div class="w-full flex flex-col items-center justify-center gap-2 animate-fadein delay-300 mb-8 mt-10">
           <span class="italic text-xl sm:text-2xl md:text-3xl font-semibold text-center max-w-2xl">
             Cambia tu manera de relacionarte con la <span class="text-[#00B290]">música</span>
@@ -281,8 +280,8 @@ const faqs = [
           </div>
         ))}
       </section>
-    </div>
-    <!-- Benefits Section -->
+    </main>
+    <!-- BENEFICIOS fuera del contenedor principal para que el fondo ocupe todo el ancho -->
     <section id="benefits-section" class="w-full py-10 md:py-16 bg-gradient-to-r from-[#00B290]/40 to-pink-900/40 reveal-on-scroll">
       <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-8 md:gap-16 items-center px-4 sm:px-8 benefits-fadein">
         <div class="flex-1">
@@ -300,36 +299,35 @@ const faqs = [
         </div>
       </div>
     </section>
-    <div class="flex flex-col items-center w-full max-w-6xl mx-auto gap-8 sm:gap-12 px-4 sm:px-8">
-      <!-- FAQ Section -->
-      <section class="w-full py-10 md:py-16 bg-black rounded-3xl shadow-lg reveal-on-scroll">
-        <h4 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 text-center text-[#00B290]">Preguntas frecuentes</h4>
-        <div class="flex flex-col gap-4" id="faq-list">
-          {faqs.map((faq, i) => (
-            <div class="faq-item bg-transparent rounded-2xl p-0 border border-[#00B290]/30 transition-all duration-300 group overflow-hidden animate-fadein delay-{i * 100}">
-              <button type="button" class="w-full cursor-pointer text-base sm:text-lg font-semibold flex items-center gap-2 group px-4 py-3 bg-transparent outline-none faq-toggle text-left" data-faq-idx="{i}">
-                <svg class="w-5 h-5 flex-shrink-0 text-[#00B290]" viewBox="0 0 218.911 218.911" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M170.975,49.667c-1.143-1.672-2.298-3.205-3.433-4.553c-8.974-10.66-24.952-19.393-42.742-23.36
-                  c-11.391-2.542-24.952-14.857-29.21-19.383c-2.644-2.822-7.118-3.252-10.324-0.602c-1.741,1.44-2.647,3.658-2.648,5.918
-                  l-0.005,10.175l-0.005,9.994c0,0,0,0,0,0l-0.06,124.317c-4.072-1.647-8.464-2.516-12.995-2.518
-                  c-19.083,0-34.617,15.526-34.626,34.61c-0.009,19.094,15.517,34.635,34.611,34.645c0.001,0,0.015,0,0.016,0
-                  c19.085,0,34.619-15.526,34.627-34.611v0c0,0,0,0,0,0l0.054-112.369c3.936,1.326,8.534,2.349,13.901,2.827
-                  c20.538,1.829,34.369,5.939,43.527,12.933c6.839,5.223,7.11,7.762,7.215,8.324c0,0.013,0,0.026,0,0.039
-                  c0.011,0.786,0.699,1.396,1.485,1.396l6.119,0.004v0v0l2.8,0.001c2.596,0.001,4.701-2.102,4.702-4.697V92.71
-                  C183.992,77.021,179.493,62.137,170.975,49.667z M69.553,211.41L69.553,211.41L69.553,211.41L69.553,211.41z"/>
-                </svg>
-                <span class="flex-1">{faq.question}</span>
-                <svg class="w-4 h-4 ml-2 text-[#00B290] transition-transform duration-300 faq-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></svg>
-              </button>
-              <div class="faq-answer px-4" style="max-height:0; opacity:0; overflow:hidden; transition:max-height 0.35s cubic-bezier(0.77,0,0.175,1), opacity 0.35s cubic-bezier(0.77,0,0.175,1)">
-                <p class="mt-1 mb-4 text-neutral-300 text-sm sm:text-base">{faq.answer}</p>
-              </div>
+    <!-- FAQ -->
+    <section class="w-full py-10 md:py-16 bg-black rounded-3xl shadow-lg reveal-on-scroll">
+      <h4 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 text-center text-[#00B290]">Preguntas frecuentes</h4>
+      <div class="flex flex-col gap-4" id="faq-list">
+        {faqs.map((faq, i) => (
+          <div class="faq-item bg-transparent rounded-2xl p-0 border border-[#00B290]/30 transition-all duration-300 group overflow-hidden animate-fadein delay-{i * 100}">
+            <button type="button" class="w-full cursor-pointer text-base sm:text-lg font-semibold flex items-center gap-2 group px-4 py-3 bg-transparent outline-none faq-toggle text-left" data-faq-idx="{i}">
+              <svg class="w-5 h-5 flex-shrink-0 text-[#00B290]" viewBox="0 0 218.911 218.911" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M170.975,49.667c-1.143-1.672-2.298-3.205-3.433-4.553c-8.974-10.66-24.952-19.393-42.742-23.36
+                c-11.391-2.542-24.952-14.857-29.21-19.383c-2.644-2.822-7.118-3.252-10.324-0.602c-1.741,1.44-2.647,3.658-2.648,5.918
+                l-0.005,10.175l-0.005,9.994c0,0,0,0,0,0l-0.06,124.317c-4.072-1.647-8.464-2.516-12.995-2.518
+                c-19.083,0-34.617,15.526-34.626,34.61c-0.009,19.094,15.517,34.635,34.611,34.645c0.001,0,0.015,0,0.016,0
+                c19.085,0,34.619-15.526,34.627-34.611v0c0,0,0,0,0,0l0.054-112.369c3.936,1.326,8.534,2.349,13.901,2.827
+                c20.538,1.829,34.369,5.939,43.527,12.933c6.839,5.223,7.11,7.762,7.215,8.324c0,0.013,0,0.026,0,0.039
+                c0.011,0.786,0.699,1.396,1.485,1.396l6.119,0.004v0v0l2.8,0.001c2.596,0.001,4.701-2.102,4.702-4.697V92.71
+                C183.992,77.021,179.493,62.137,170.975,49.667z M69.553,211.41L69.553,211.41L69.553,211.41L69.553,211.41z"/>
+              </svg>
+              <span class="flex-1">{faq.question}</span>
+              <svg class="w-4 h-4 ml-2 text-[#00B290] transition-transform duration-300 faq-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></svg>
+            </button>
+            <div class="faq-answer px-4" style="max-height:0; opacity:0; overflow:hidden; transition:max-height 0.35s cubic-bezier(0.77,0,0.175,1), opacity 0.35s cubic-bezier(0.77,0,0.175,1)">
+              <p class="mt-1 mb-4 text-neutral-300 text-sm sm:text-base">{faq.answer}</p>
             </div>
-          ))}
-        </div>
-      </section>
-    </div>
-    <!-- Footer -->
+          </div>
+        ))}
+      </div>
+    </section>
+    </main>
+    <!-- FOOTER -->
     <footer class="w-full py-12 flex flex-col items-center text-neutral-400 text-sm bg-neutral-900 mt-20">
       <div class="mb-4 text-base font-medium opacity-90">loopendcompany@gmail.com</div>
       <div class="flex gap-8 text-2xl py-6">
