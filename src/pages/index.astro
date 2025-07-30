@@ -11,7 +11,8 @@ const features = [
   {
     title: "Descubre nueva música",
     description: "Explora los resúmenes de otros usuarios y encuentra nuevas canciones y artistas para tu playlist.",
-    image: "/mockup2.png",
+    image: "/Screenshot 2025-07-30 at 13.07.28.png",
+    mobileImage: "/Screenshot 2025-07-30 at 13.29.07.png",
     reverse: true,
   },
   {
@@ -95,9 +96,9 @@ const faqs = [
           <div id="features-carousel" class="flex overflow-x-auto gap-4 pb-2 hide-scrollbar scroll-smooth snap-x snap-mandatory">
             {features.map((feature, idx) => (
               <div class={`transition-all duration-300 min-w-[85vw] max-w-[340px] bg-neutral-900/80 rounded-3xl flex flex-col items-center justify-center p-6 snap-center shadow-lg
-                ${idx === 0 ? 'scale-100 shadow-2xl bg-black/90' : 'scale-90 opacity-60 blur-[1.5px]'}
+                ${idx === 0 ? 'scale-100 shadow-2xl bg-black/90' : 'scale-90 opacity-60 blur-[1.5px] bg-neutral-900/80'}
               `} data-carousel-idx={idx}>
-                <img src={feature.image} alt={feature.title} class="w-full max-w-[180px] rounded-[2.5rem] object-contain shadow-lg mb-4" />
+                <img src={feature.mobileImage || feature.image} alt={feature.title} class={`w-full rounded-[2.5rem] object-cover shadow-lg mb-4 ${feature.image.includes('Screenshot') ? 'max-w-[320px]' : 'max-w-[180px]'}`} />
                 <h2 class="text-2xl font-bold font-['Inter',sans-serif] mb-2 text-center text-white drop-shadow-lg">{feature.title}</h2>
                 <p class="text-base text-neutral-300 text-center">{feature.description}</p>
               </div>
@@ -276,7 +277,7 @@ const faqs = [
         {features.map((feature, idx) => (
           <div class={`feature-block flex flex-col md:flex-row ${feature.reverse ? 'md:flex-row-reverse' : ''} items-center gap-8 md:gap-20 w-full relative group reveal-on-scroll py-6 md:py-10`} data-anim="${idx % 2 === 0 ? 'left' : 'right'}" data-feature-idx="${idx}"> 
             <div class="flex-1 flex justify-center">
-              <img src={feature.image} alt={feature.title} class="w-full max-w-[272px] rounded-[2.5rem] object-contain shadow-lg" />
+              <img src={feature.image} alt={feature.title} class={`w-full rounded-[2.5rem] object-contain shadow-lg ${feature.image.includes('Screenshot') ? 'max-w-[450px]' : 'max-w-[272px]'}`} />
             </div>
             <div class="flex-1 flex flex-col gap-4">
               <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold font-['Inter',sans-serif]">{feature.title}</h2>
