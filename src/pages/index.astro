@@ -5,7 +5,7 @@ const features = [
   {
     title: "Comparte tu resumen musical",
     description: "Cada domingo a las 21:00, comparte tus tres canciones más escuchadas de la semana y descubre lo que escuchan tus amigos.",
-    image: "/mockup2.png",
+    image: "/Post.png",
     reverse: false,
   },
   {
@@ -18,7 +18,7 @@ const features = [
   {
     title: "Revive tus semanas",
     description: "Accede a tu historial y revive los mejores momentos musicales de cada semana.",
-    image: "/mockup3.png",
+    image: "/Profile Screen - Other.png",
     reverse: false,
   },
 ];
@@ -95,8 +95,8 @@ const faqs = [
           </button>
           <div id="features-carousel" class="flex overflow-x-auto gap-4 pb-2 hide-scrollbar scroll-smooth snap-x snap-mandatory">
             {features.map((feature, idx) => (
-              <div class={`transition-all duration-300 min-w-[85vw] max-w-[340px] bg-neutral-900/80 rounded-3xl flex flex-col items-center justify-center p-6 snap-center shadow-lg
-                ${idx === 0 ? 'scale-100 shadow-2xl bg-black/90' : 'scale-90 opacity-60 blur-[1.5px] bg-neutral-900/80'}
+              <div class={`transition-all duration-300 min-w-[85vw] max-w-[340px] bg-neutral-900/80 rounded-3xl flex flex-col items-center justify-center p-6 snap-center
+                ${idx === 0 ? 'scale-100 shadow-2xl' : 'scale-90 opacity-60 blur-[1.5px] shadow-lg'}
               `} data-carousel-idx={idx}>
                 <img src={feature.mobileImage || feature.image} alt={feature.title} class={`w-full rounded-[2.5rem] object-cover shadow-lg mb-4 ${feature.image.includes('Screenshot') ? 'max-w-[320px]' : 'max-w-[180px]'}`} />
                 <h2 class="text-2xl font-bold font-['Inter',sans-serif] mb-2 text-center text-white drop-shadow-lg">{feature.title}</h2>
@@ -135,7 +135,6 @@ const faqs = [
             cards.forEach((el, idx: number) => {
               el.classList.toggle('scale-100', idx === activeIdx);
               el.classList.toggle('shadow-2xl', idx === activeIdx);
-              el.classList.toggle('bg-black/90', idx === activeIdx);
               el.classList.toggle('opacity-60', idx !== activeIdx);
               el.classList.toggle('blur-[1.5px]', idx !== activeIdx);
               el.classList.toggle('scale-90', idx !== activeIdx);
